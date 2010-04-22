@@ -1,6 +1,12 @@
 #!/usr/bin/env ruby -wKU
 require 'win32ole'
 
+class << Hash
+  def create(keys, values)
+    self[*keys.zip(values).flatten]
+  end
+end
+
 class SqlServer
   attr_accessor :connection
 
@@ -42,10 +48,10 @@ class SqlServer
     # convert it to an array of rows
     data = data.transpose
     
-    return {
-      :fields => fields, 
-      :data => data
-    }
+    result_set = []
+    data.each { |row| result_set << Hash.create(fields, row) }
+    
+    return result_set
   end
 
   def close

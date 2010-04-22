@@ -10,9 +10,8 @@ puts "\n#{qry}\n"
 
 patients = db.query(qry)
 
-patients[:data].each do |patient|
-  patients[:fields].each do |field| 
-    puts "#{field} => " << patient[patients[:fields].index(field)]
-  end
+patients.each do |patient|
+  puts patient.values[1].strip << " (#{patient['PA-ACCT-TYPE']}):"
+  patient.each { |f,v| puts "  #{f} => #{v}" }
   puts "------------------------------------------"
 end
