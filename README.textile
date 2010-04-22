@@ -1,6 +1,6 @@
 h1. SqlServer
 
-|_.Author|Ed Botzum  (mailto:contact@edbotz.us)|
+|_.Author|Ed Botzum  ("contact@edbotz.us":mailto:contact@edbotz.us)|
 |_.Copyright|Copyright (c) 2010 edbotz|
 |_.License|MIT|
 
