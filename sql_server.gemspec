@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
 
   s.summary     = "Fast and easy Microsoft Sql Server querying."
   s.description = "Uses ole to interact with the Mocrosoft ADO objects and interface with Microsft SQL Server."
-  s.homepage    = "http://github.com/ebot/sql_server"
+  s.homepage    = "http://ebot.github.com/sql-server"
  
   s.add_dependency 'win32ole-pp'
   
