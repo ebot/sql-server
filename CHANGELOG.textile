@@ -1,3 +1,7 @@
+h1. 0.0.2 - 2010-04-22
+
+* Fixed the homepage for the gem.
+
 h1. 0.0.1 - 2010-04-22
 
 * Created the initial class and gem.
