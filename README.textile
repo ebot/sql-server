@@ -5,8 +5,7 @@ h1. SqlServer
 |_.License|MIT|
 
 Used to interact with Microsoft SQL Server.
-Based on the work of "David Mullet":http://rubyonwindows.blogspot.com/2007/03/ruby-ado-and-sqlserver.html
-and "Miro's":http://thinkwrap.wordpress.com/2007/04/25/accessing-sql-server-2005-from-ruby/ "snippet":http://snippets.dzone.com/posts/show/3906
+Based on the work of "David Mullet":http://rubyonwindows.blogspot.com/2007/03/ruby-ado-and-sqlserver.html and "Miro's":http://thinkwrap.wordpress.com/2007/04/25/accessing-sql-server-2005-from-ruby/ "snippet":http://snippets.dzone.com/posts/show/3906
 
 h2. TODOS:
 
