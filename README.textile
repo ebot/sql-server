@@ -18,6 +18,19 @@ Only runs on Windows because it takes advantage of MDAC for best performace and 
  * Win32 Ole - "http://rubygems.org/gems/win32ole-pp":http://rubygems.org/gems/win32ole-pp
  * Microsoft Data Access Components - "http://msdn2.microsoft.com/en-us/data/aa937730.aspx":http://msdn2.microsoft.com/en-us/data/aa937730.aspx
 
+h2. Sample Usage
+
+<code>
+db = SqlServer.new
+db.open( { :host => '10.2.1.135', 
+          :user_name => 'user', 
+          :password => 'password', 
+          :database => 'database' } )
+
+names = db.query('SELECT last_name, first_name FROM addresses')
+names[:data].each { |name| puts "#{name[0]}, #{name[1]}" }
+</code>
+
 h2. License
 
 <pre>
