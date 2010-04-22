@@ -4,26 +4,13 @@ require 'win32ole'
 class SqlServer
   attr_accessor :connection
 
-  def initialize()
-    @connection = nil
-  end
-
-  def open(params = {})
+  def initialize(params = {})
     # Set the connection parameters
     params = { :host => nil, :user_name => nil, :password => nil,
                :database => nil, :timeout => nil }.merge!(params)
-    
-    # Open ADO connection to the SQL Server database
-    connection_string =  "Provider=SQLNCLI;"
-    connection_string << "Server=#{params[:host]};"
-    connection_string << "Uid=#{params[:user_name]};"
-    connection_string << "Pwd=#{params[:password]};"
-    connection_string << "Database=#{params[:database]};"
-    @connection = WIN32OLE.new('ADODB.Connection')
-    @connection.Open(connection_string)
-    @connection.CommandTimeout = params[:timeout] unless params[:timeout].nil?
+    @connection = open(params)
   end
-  
+ 
   def query(sql)
     # Create an instance of an ADO Recordset
     recordset = WIN32OLE.new('ADODB.Recordset')
@@ -55,15 +42,29 @@ class SqlServer
     # convert it to an array of rows
     data = data.transpose
     
-    result_set = {
+    return {
       :fields => fields, 
       :data => data
     }
-    
-    return result_set
   end
 
   def close
     @connection.Close
+  end
+  
+  private
+  
+   def open(params)
+    connection_string =  "Provider=SQLNCLI;"
+    connection_string << "Server=#{params[:host]};"
+    connection_string << "Uid=#{params[:user_name]};"
+    connection_string << "Pwd=#{params[:password]};"
+    connection_string << "Database=#{params[:database]};"
+    
+    connection = WIN32OLE.new('ADODB.Connection')
+    connection.Open(connection_string)
+    connection.CommandTimeout = params[:timeout] unless params[:timeout].nil?
+    
+    return connection
   end
 end

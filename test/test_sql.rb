@@ -1,10 +1,9 @@
 require "../lib/SqlServer.rb"
 
-db = SqlServer.new
-db.open( { :host => '10.2.1.135', 
-          :user_name => 'sa', 
-          :password => 'password', 
-          :database => 'database' } )
+db = SqlServer.new( { :host => '10.2.1.135', 
+                      :user_name => 'user', 
+                      :password => 'password', 
+                      :database => 'database' } )
 
 qry = 'SELECT TOP 10 [PA-PT-NO-WOSCD], [PA-ACCT-TYPE], [PA-PT-NAME] FROM PatientDemographics'
 puts "\n#{qry}\n"

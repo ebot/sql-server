@@ -21,11 +21,10 @@ Only runs on Windows because it takes advantage of MDAC for best performace and 
 h2. Sample Usage
 
 <pre>
-db = SqlServer.new
-db.open( { :host => '10.2.1.135', 
-          :user_name => 'user', 
-          :password => 'password', 
-          :database => 'database' } )
+db = SqlServer.new( { :host => '10.2.1.135', 
+                      :user_name => 'user', 
+                      :password => 'password', 
+                      :database => 'database' } )
 
 names = db.query('SELECT last_name, first_name FROM addresses')
 names[:data].each { |name| puts "#{name[0]}, #{name[1]}" }
