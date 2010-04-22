@@ -26,8 +26,9 @@
     a { color: black; }
     .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
     .download { float: right; }
-		.footer { text-align:center; padding-top:30px; font-style: italic; }
-		.allcode { background-color: white; }
+		pre { background: #000; color: #fff; padding: 15px;}
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .footer { text-align:center; padding-top:30px; font-style: italic; }
 	</style>
 	
 </head>
@@ -52,7 +53,19 @@
     </div>
     
     <p>This library makes it easy to query SQL Server from a ruby script:</p>
-    <script src='http://pastie.org/930330.js'></script>
+<pre>
+require 'SqlServer'
+
+db = SqlServer.new( { :host => '10.2.1.135', 
+                      :user_name => 'people_test', 
+                      :password => 'password', 
+                      :database => 'people' } )
+
+qry = 'SELECT first, middle, last, suffix from names'
+
+names = db.query('SELECT first, last, middle FROM names')
+names.each { |name| puts "#{name['last']}, #{name['first']} #{name['middle']}" }  
+</pre>
 
     <h2>Dependencies</h2>
       <ul>
