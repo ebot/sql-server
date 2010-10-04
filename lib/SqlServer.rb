@@ -53,6 +53,16 @@ class SqlServer
     
     return result_set
   end
+  
+  def execute_command(sql_statement)
+    # Create an instance of an ADO COmmand
+    command = WIN32OLE.new('ADODB.Command')
+    
+    # Execute the SQL statement using the existing ADO connection
+    command.ActiveConnection = @connection
+    command.CommandText=sql_statement
+    command.Execute
+  end
 
   def close
     @connection.Close
