@@ -67,8 +67,6 @@ db = SqlServer.new( { :host => '10.2.1.135',
                       :password => 'password', 
                       :database => 'people' } )
 
-qry = 'SELECT first, middle, last, suffix from names'
-
 names = db.query('SELECT first, last, middle FROM names')
 names.each { |name| puts "#{name['last']}, #{name['first']} #{name['middle']}" }  
 </pre>
