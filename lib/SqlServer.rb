@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby -wKU
+#!/usr/bin/env ruby
 require 'win32ole'
 
 class << Hash
@@ -10,6 +10,12 @@ end
 class SqlServer
   attr_accessor :connection
 
+  # Creates a Sql Server Connection
+  # * :host => The server name or IP.
+  # * :user_name => SQL user.
+  # * :password => The password for user_name.
+  # * :database => Database to connect to on the host.
+  # * :timeout => The seconds to wait for a query/commant to run.
   def initialize(params = {})
     # Set the connection parameters
     params = { :host => nil, :user_name => nil, :password => nil,
@@ -17,7 +23,8 @@ class SqlServer
     @timeout = params[:timeout]
     @connection = open(params)
   end
- 
+  
+  # Executes the sepecified query and returns the results in a hash.
   def query(sql)
     # Create an instance of an ADO Recordset
     recordset = WIN32OLE.new('ADODB.Recordset')
@@ -30,13 +37,13 @@ class SqlServer
     fields = []
     data = []
     recordset.Fields.each do |field|
-        fields << field.Name
+      fields << field.Name
     end
     
     begin
       # Move to the first record/row, if any exist
       recordset.MoveFirst
-
+      
       # Grab all records
       data = recordset.GetRows
     rescue Exception => e
@@ -55,6 +62,7 @@ class SqlServer
     return result_set
   end
   
+  # Executes the specfied SQL command.
   def execute_command(sql_statement)
     # Create an instance of an ADO COmmand
     command = WIN32OLE.new('ADODB.Command')
@@ -65,14 +73,15 @@ class SqlServer
     command.CommandTimeout = @timeout unless @timeout.nil?
     command.Execute
   end
-
+  
+  # Closes the connection to the SQL Server.
   def close
     @connection.Close
   end
   
   private
   
-   def open(params)
+  def open(params)
     connection_string =  "Provider=SQLNCLI;"
     connection_string << "Server=#{params[:host]};"
     connection_string << "Uid=#{params[:user_name]};"
@@ -82,7 +91,6 @@ class SqlServer
     connection = WIN32OLE.new('ADODB.Connection')
     connection.Open(connection_string)
     connection.CommandTimeout = @timeout unless @timeout.nil?
-    
     
     return connection
   end
