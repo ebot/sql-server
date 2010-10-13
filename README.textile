@@ -9,7 +9,7 @@ Based on the work of "David Mullet":http://rubyonwindows.blogspot.com/2007/03/ru
 
 h2. TODOS:
 
- * Add support to execute commands.
+ * Create Ruby Docs.
 
 h2. Rquirements
 
