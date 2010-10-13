@@ -14,6 +14,7 @@ class SqlServer
     # Set the connection parameters
     params = { :host => nil, :user_name => nil, :password => nil,
                :database => nil, :timeout => nil }.merge!(params)
+    @timeout = params[:timeout]
     @connection = open(params)
   end
  
@@ -61,6 +62,7 @@ class SqlServer
     # Execute the SQL statement using the existing ADO connection
     command.ActiveConnection = @connection
     command.CommandText=sql_statement
+    command.CommandTimeout = @timeout unless @timeout.nil?
     command.Execute
   end
 
@@ -79,7 +81,8 @@ class SqlServer
     
     connection = WIN32OLE.new('ADODB.Connection')
     connection.Open(connection_string)
-    connection.CommandTimeout = params[:timeout] unless params[:timeout].nil?
+    connection.CommandTimeout = @timeout unless @timeout.nil?
+    
     
     return connection
   end
