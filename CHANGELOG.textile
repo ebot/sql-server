@@ -1,0 +1,15 @@
+h1. 0.1.1 - 2010-10-13
+
+* BUGFIX - Commands now set the timeout that was passed into the connection too.
+
+h1. 0.1.0 - 2010-10-04
+
+* Added the ability to execute SQL Server Command Statements.
+
+h1. 0.0.2 - 2010-04-22
+
+* Fixed the homepage for the gem.
+
+h1. 0.0.1 - 2010-04-22
+
+* Created the initial class and gem.
