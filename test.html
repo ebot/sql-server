@@ -9,7 +9,12 @@
 <form action="test_upload_submit" method="get" accept-charset="utf-8">
   <label for="encounter_no">number</label><input type="text" name="encounter_no" value="1234567890" id="encounter_no">
   <br />
-  <label for="facility">facility</label><input type="text" name="facility" value="hhrr" id="facility">
+  <label for="facility">facility</label>
+  <select name='facil'>
+  	<option>A0RA</option>
+  	<option>A0RB</option>
+  	<option>A0RC</option>
+  </select>
   <br />
   <label for="photo">Photo</label><input type="file" name="photo" id="photo">
 <p><input type="submit" value="Send to EDM &rarr;"></p>
